@@ -19,8 +19,10 @@ class Main extends BaseController
         // dd($usuarios);
 
         // tasks
-        $model_tasks = new TasksModel();
-        $tasks = $model_tasks->findAll();
-        dd($tasks);
+        // $model_tasks = new TasksModel();
+        // $tasks = $model_tasks->findAll();
+        // dd($tasks);
+
+        return view('teste');
     }
 }
