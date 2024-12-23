@@ -6,7 +6,7 @@
         <div class="col">
             <h3>Nova tarefa</h3>
             <hr>
-            <?= form_open('new_task_submit') ?>
+            <?= form_open('new_task_submit', ['novalidate' => true]) ?>
             <div class="mb-3">
                 <label class="form-label">Nome da tarefa</label>
                 <input type="text" name="text_tarefa" class="form-control" placeholder="Nome da tarefa" value="<?= old('text_tarefa') ?>" required>
@@ -20,6 +20,14 @@
                 <button type="submit" class="btn btn-primary px-5"><i class="fa-solid fa-floppy-disk me-2"></i>Salvar</button>
             </div>
             <?= form_close() ?>
+
+            <?php if (!empty($validation_errors)) : ?>
+                <div class="alert alert-danger mt-5">
+                    <?php foreach ($validation_errors as $error) : ?>
+                        <?= $error ?>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 </div>
