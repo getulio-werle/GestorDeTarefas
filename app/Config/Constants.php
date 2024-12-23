@@ -97,3 +97,11 @@ define('EVENT_PRIORITY_HIGH', 10);
 // CUSTOM CONSTANTS
 // ==========================================================
 define('APP_NAME', 'Gestor de Tarefas');
+define('STATUS_LIST', [
+    'all' => 'Tudo',
+    'new' => 'Nova',
+    'started' => 'Iniciada',
+    'paused' => 'Pausada',
+    'cancelled' => 'Cancelada',
+    'finished' => 'Finalizada'
+]);

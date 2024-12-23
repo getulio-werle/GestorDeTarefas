@@ -11,11 +11,9 @@ class Main extends BaseController
 {
     public function index()
     {
-        if(session()->has('id')){
-            echo 'Logado';
-        } else {
-            echo 'Não logado';
-        }
+        // main
+        $data = [];
+        return view('main', $data);
     }
 
     public function login()
@@ -73,5 +71,29 @@ class Main extends BaseController
         session()->set($session_data);
         // redirect to home page
         return redirect()->to('/');
+    }
+
+    public function logout()
+    {
+        // destroy session
+        session()->destroy();
+        // redirect to main page
+        return redirect()->to('/');
+    }
+
+    public function new_task()
+    {
+        echo 'new_task';
+    }
+
+    public function new_task_submit()
+    {
+        echo 'new_task_submit';
+    }
+
+    public function session() {
+        echo '<pre>';
+        print_r(session()->get());
+        echo '</pre>';
     }
 }
