@@ -83,7 +83,7 @@ class Main extends BaseController
 
     public function new_task()
     {
-        echo 'new_task';
+        return view('new_task_frm');
     }
 
     public function new_task_submit()
