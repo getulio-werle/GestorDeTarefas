@@ -32,38 +32,49 @@
         </div>
     </div>
 </section>
-
 <section class="container">
     <div class="row">
         <div class="col">
-          <h3>Tarefas</h3>  
+            <h3>Tarefas</h3>
         </div>
     </div>
 </section>
-<section class="container">
-    <div class="row">
-        <div class="col">
-            <table class="table table-striped">
-                <thead>
-                    <th>Tarefa</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </thead>
-                <tbody>
-                    <td>A</td>
-                    <td>B</td>
-                    <td>C</td>
-                </tbody>
-            </table>
+<?php if (!empty($tasks)) : ?>
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead>
+                        <th width="50%">Tarefa</th>
+                        <th width="25%">Status</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($tasks as $task) : ?>
+                            <tr>
+                                <td><?= $task->task_name ?></td>
+                                <td>
+                                    <?= STATUS_LIST[$task->task_status] ?>
+                                </td>
+                                <td class="text-end">
+                                    <a href="<?= site_url('edit_task/' . $task->id) ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="<?= site_url('delete_task/' . $task->id) ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</section>
-<section class="container mt-3">
-    <div class="row">
-        <div class="col text-center">
-            <p>Não foram encontradas tarefas.</p>
+    </section>
+<?php else : ?>
+    <section class="container mt-3">
+        <div class="row">
+            <div class="col text-center">
+                <p>Não foram encontradas tarefas.</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif ?>
 
 <?= $this->endSection() ?>
