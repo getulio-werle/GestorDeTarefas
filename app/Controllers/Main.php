@@ -119,6 +119,16 @@ class Main extends BaseController
         // get form data
         $titulo = $this->request->getPost('text_tarefa');
         $descricao = $this->request->getPost('text_descricao');
+        // insert data
+        $tasks_model = new TasksModel();
+        $tasks_model->insert([
+            'id_user' => session()->id,
+            'task_name' => $titulo,
+            'task_description' => $descricao,
+            'task_status' => 'new'
+        ]);
+        // redirect to home page
+        return redirect()->to('/');
         // save data
         echo 'Fim';
     }
