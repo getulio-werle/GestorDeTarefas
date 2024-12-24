@@ -14,5 +14,8 @@ $routes->get('/logout', 'Main::logout');
 $routes->get('/new_task', 'Main::new_task');
 $routes->post('/new_task_submit', 'Main::new_task_submit');
 
+// search and filter tasks
+$routes->post('/search', 'Main::search');
+
 // session
 $routes->get('/session', 'Main::session');
