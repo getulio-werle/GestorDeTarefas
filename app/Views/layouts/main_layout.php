@@ -12,6 +12,12 @@
     <!-- Fontawesome -->
     <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/all.min.css') ?>">
 
+    <!-- DataTables CSS -->
+    <?php if (!empty($datatables)) : ?>
+        <link rel="stylesheet" href="<?= base_url('assets/datatables/datatables.min.css') ?>">
+        <script src="<?= base_url('assets/datatables/jQuery-3.7.0/jquery-3.7.0.min.js') ?>"></script>
+    <?php endif ?>
+
 </head>
 
 <body>
@@ -26,6 +32,11 @@
 
     <!-- Bootstrap JS -->
     <script src="<?= base_url('assets/bootstrap/bootstrap.bundle.min.js') ?>"></script>
+
+        <!-- DataTables JS -->
+        <?php if (!empty($datatables)) : ?>
+            <script src="<?= base_url('assets/datatables/datatables.min.js') ?>"></script>
+        <?php endif ?>
 
 </body>
 

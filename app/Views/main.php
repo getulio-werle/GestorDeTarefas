@@ -8,7 +8,7 @@
             <?= form_open('search') ?>
             <div class="mb-3 d-flex align-items-center">
                 <label for="text_search" class="me-3">Pesquisar:</label>
-                <input type="text" name="text_search" class="form-control w-50 me-3">
+                <input type="text" name="text_search" id="text_search" class="form-control w-50 me-3">
                 <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
             <?= form_close() ?>
@@ -18,7 +18,7 @@
             <?= form_open('filter') ?>
             <div class="d-flex mb-3 align-items-center">
                 <label for="select_status" class="me-2">Status:</label>
-                <select name="select_status" class="form-select">
+                <select name="select_status" id="select_status" class="form-select">
                     <?php foreach (STATUS_LIST as $key => $value) : ?>
                         <option value="<?= $key ?>"><?= $value ?></option>
                     <?php endforeach ?>
@@ -43,7 +43,7 @@
     <section class="container">
         <div class="row">
             <div class="col">
-                <table class="table table-striped">
+                <table class="table table-striped" id="table_tasks">
                     <thead>
                         <th width="50%">Tarefa</th>
                         <th width="25%">Status</th>
@@ -75,6 +75,30 @@
             </div>
         </div>
     </section>
+<?php endif ?>
+<!-- datatables -->
+<?php if (!empty($tasks)) : ?>
+    <script>
+        $(document).ready(() => {
+            $('#table_tasks').DataTable({
+                "language": {
+                    "info": "Mostrando página _START_ de _TOTAL_",
+                    "infoEmpty": "Nenhum registro disponível",
+                    "infoFiltered": "(filtrado de _MAX_ registros no total)",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "loadingRecords": "Carregando...",
+                    "search": "Pesquisar:",
+                    "zeroRecords": "Nada encontrado",
+                    "paginate": {
+                        "first": "Primeiro",
+                        "last": "Último",
+                        "next": "Próximo",
+                        "previous": "Anterior"
+                    }
+                }
+            })
+        })
+    </script>
 <?php endif ?>
 
 <?= $this->endSection() ?>
