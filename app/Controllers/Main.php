@@ -148,6 +148,19 @@ class Main extends BaseController
         return view('main', $data);
     }
 
+    public function filter($status) {
+        $data = [];
+        $tasks_model = new TasksModel();
+        if ($status == 'all') {
+            $data['tasks'] = $tasks_model->where('id_user', session()->id)->findAll();
+        } else {
+            $data['tasks'] = $tasks_model->where('id_user', session()->id)->where('task_status', $status)->findAll();
+        }
+        $data['status'] = $status;
+        $data['datatables'] = true;
+        return view('main', $data);
+    }
+
     public function session()
     {
         echo '<pre>';

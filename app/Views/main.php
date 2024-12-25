@@ -15,7 +15,6 @@
         </div>
         <div class="col">
             <!-- status filter -->
-            <?= form_open('filter') ?>
             <div class="d-flex mb-3 align-items-center">
                 <label for="select_status" class="me-2">Status:</label>
                 <select name="select_status" id="select_status" class="form-select">
@@ -24,7 +23,6 @@
                     <?php endforeach ?>
                 </select>
             </div>
-            <?= form_close() ?>
         </div>
         <div class="col text-end">
             <!-- new task button -->
@@ -77,28 +75,33 @@
     </section>
 <?php endif ?>
 <!-- datatables -->
-<?php if (!empty($tasks)) : ?>
-    <script>
-        $(document).ready(() => {
-            $('#table_tasks').DataTable({
-                "language": {
-                    "info": "Mostrando página _START_ de _TOTAL_",
-                    "infoEmpty": "Nenhum registro disponível",
-                    "infoFiltered": "(filtrado de _MAX_ registros no total)",
-                    "lengthMenu": "Mostrar _MENU_ registros por página",
-                    "loadingRecords": "Carregando...",
-                    "search": "Pesquisar:",
-                    "zeroRecords": "Nada encontrado",
-                    "paginate": {
-                        "first": "Primeiro",
-                        "last": "Último",
-                        "next": "Próximo",
-                        "previous": "Anterior"
-                    }
+<script>
+    // datatable
+    $(document).ready(function() {
+        $('#table_tasks').DataTable({
+            "language": {
+                "info": "Mostrando página _START_ de _TOTAL_",
+                "infoEmpty": "Nenhum registro disponível",
+                "infoFiltered": "(filtrado de _MAX_ registros no total)",
+                "lengthMenu": "Mostrar _MENU_ registros por página",
+                "loadingRecords": "Carregando...",
+                "search": "Pesquisar:",
+                "zeroRecords": "Nada encontrado",
+                "paginate": {
+                    "first": "Primeiro",
+                    "last": "Último",
+                    "next": "Próximo",
+                    "previous": "Anterior"
                 }
-            })
+            }
         })
-    </script>
-<?php endif ?>
+    });
+    // filter change
+    document.querySelector('select[name="select_status"]').addEventListener('change', (e) => {
+        console.log('teste');
+        let status = e.target.value;
+        window.location.href = `<?= site_url('filter') ?>/${status}`;
+    });
+</script>
 
 <?= $this->endSection() ?>
