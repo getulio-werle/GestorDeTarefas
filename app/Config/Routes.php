@@ -18,5 +18,8 @@ $routes->post('/new_task_submit', 'Main::new_task_submit');
 $routes->post('/search', 'Main::search');
 $routes->get('/filter/(:alpha)', 'Main::filter/$1');
 
+// edit task
+$routes->get('edit_task/(:alphanum)', 'Main::edit_task/$1');
+
 // session
 $routes->get('/session', 'Main::session');
