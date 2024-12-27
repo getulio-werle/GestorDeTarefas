@@ -213,7 +213,7 @@ class Main extends BaseController
                 ],
                 'text_descricao' => [
                     'label' => 'Descrição',
-                    'rules' => 'max_length[200]',
+                    'rules' => 'max_length[500]',
                     'errors' => [
                         'max_length' => 'O campo {field} deve ter no máximo {param} caracteres.'
                     ]
@@ -256,6 +256,50 @@ class Main extends BaseController
             'task_status' => $status
         ]);
         // redirect to homepage
+        return redirect()->to('/');
+    }
+
+    public function delete_task($enc_id)
+    {
+        // decrypt task id
+        $task_id = decrypt($enc_id);
+        if (!$task_id) {
+            return redirect()->to('/');
+        }
+        // load task data
+        $tasks_model = new TasksModel();
+        $task_data = $tasks_model->where('id', $task_id)->first();
+        if (!$task_data) {
+            return redirect()->to('/');
+        }
+        // check if task belong to user in the session
+        if ($task_data->id_user != session()->id) {
+            return redirect()->to('/');
+        }
+        // display task with question if it is to delete or no delete
+        $data['task_data'] = $task_data;
+        return view('delete_task', $data);
+    }
+
+    public function delete_task_confirm($enc_id)
+    {
+        // decrypt task id
+        $task_id = decrypt($enc_id);
+        if (!$task_id) {
+            return redirect()->to('/');
+        }
+        // load task data
+        $tasks_model = new TasksModel();
+        $task_data = $tasks_model->where('id', $task_id)->first();
+        if (!$task_data) {
+            return redirect()->to('/');
+        }
+        // check if task belong to user in the session
+        if ($task_data->id_user != session()->id) {
+            return redirect()->to('/');
+        }
+        $tasks_model->delete($task_id);
+        // redirect to home page
         return redirect()->to('/');
     }
 
