@@ -17,13 +17,21 @@ function check_status($item, $status)
 // encrypt values
 function encrypt($value)
 {
-    $enc = \Config\Services::encrypter();
-    return bin2hex($enc->encrypt($value));
+    try {
+        $enc = \Config\Services::encrypter();
+        return bin2hex($enc->encrypt($value));
+    } catch (\Throwable $th) {
+        return false;
+    }
 }
 
 // decrypt values
 function decrypt($value)
 {
-    $enc = \Config\Services::encrypter();
-    return $enc->decrypt(hex2bin($value));
+    try {
+        $enc = \Config\Services::encrypter();
+        return $enc->decrypt(hex2bin($value));
+    } catch (\Throwable $th) {
+        return false;
+    }
 }
