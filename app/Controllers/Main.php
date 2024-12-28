@@ -303,6 +303,27 @@ class Main extends BaseController
         return redirect()->to('/');
     }
 
+    public function task_details($enc_id) {
+        // decrypt task id
+        $task_id = decrypt($enc_id);
+        if (!$task_id) {
+            return redirect()->to('/');
+        }
+        // load task data
+        $tasks_model = new TasksModel();
+        $task_data = $tasks_model->where('id', $task_id)->first();
+        if (!$task_data) {
+            return redirect()->to('/');
+        }
+        // check if task belong to user in the session
+        if ($task_data->id_user != session()->id) {
+            return redirect()->to('/');
+        }
+        // show task details
+        $data['task_data'] = $task_data;
+        return view('task_details', $data);
+    }
+
     public function session()
     {
         echo '<pre>';

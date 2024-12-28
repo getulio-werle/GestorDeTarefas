@@ -50,7 +50,7 @@
                     <tbody>
                         <?php foreach ($tasks as $task) : ?>
                             <tr>
-                                <td><?= $task->task_name ?></td>
+                                <td><a class="link-underline link-underline-opacity-0" href="<?= site_url('task_details/' . encrypt($task->id)) ?>"><?= $task->task_name ?></a></td>
                                 <td>
                                     <?= STATUS_LIST[$task->task_status] ?>
                                 </td>
