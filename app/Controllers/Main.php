@@ -22,6 +22,10 @@ class Main extends BaseController
 
     public function login()
     {
+        // check if there is an session
+        if (session()->has('id')) {
+            return redirect()->to('/');
+        }
         $data = [];
         // check for validation errors
         $validation_errors = session()->getFlashData('validation_errors');
