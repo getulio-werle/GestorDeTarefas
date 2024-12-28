@@ -6,7 +6,7 @@
         <div class="col">
             <h3>Nova tarefa</h3>
             <hr>
-            <?= form_open('new_task_submit', ['novalidate' => true]) ?>
+            <?= form_open('new_task_submit') ?>
             <div class="mb-3">
                 <label class="form-label">Nome da tarefa</label>
                 <input type="text" name="text_tarefa" class="form-control" placeholder="Nome da tarefa" value="<?= old('text_tarefa') ?>" required>

@@ -323,11 +323,4 @@ class Main extends BaseController
         $data['task_data'] = $task_data;
         return view('task_details', $data);
     }
-
-    public function session()
-    {
-        echo '<pre>';
-        print_r(session()->get());
-        echo '</pre>';
-    }
 }

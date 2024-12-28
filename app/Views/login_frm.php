@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4 col-sm-6 col-10">
                 <div class="card bg-light text-dark rounded-3 p-5">
-                    <?= form_open('login_submit', ['novalidate' => true]) ?>
+                    <?= form_open('login_submit') ?>
                     <h3 class="text-center">Login</h3>
                     <hr>
                     <div class="mb-3">
