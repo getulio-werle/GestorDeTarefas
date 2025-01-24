@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col">
-            <h3>Nova tarefa</h3>
+            <h3>Editar tarefa</h3>
             <hr>
             <?= form_open('edit_task_submit') ?>
             <!-- encrypted task id -->
